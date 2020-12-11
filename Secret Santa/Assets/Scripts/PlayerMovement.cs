@@ -1,19 +1,25 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEditor.Build.Player;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject look;
-    public float cameraSpeed = 100f;
-    public float speed = 20f;
-    public float clampX = 85f;
+    public GameObject sword;
+    [SerializeField] float cameraSpeed = 100f;
+    [SerializeField] float speed = 20f;
+    [SerializeField] float clampX = 85f;
+    [SerializeField] float jumpForce = 1000;
+
+    private Rigidbody playerRb;
     private Vector3 moveVec;
     private Vector3 lookVec;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRb = GetComponent<Rigidbody>(); 
     }
 
     // Update is called once per frame
@@ -38,5 +44,32 @@ public class PlayerMovement : MonoBehaviour
         Vector2 inputVec = input.Get<Vector2>();
 
         lookVec = new Vector3(-inputVec.y, inputVec.x, 0);
+    }
+
+    void OnJump(InputValue input)
+    {
+        playerRb.AddForce(Vector3.up * jumpForce);
+    }
+
+    void OnAttack(InputValue input)
+    {
+        Attack();
+    }
+
+    void Attack()
+    {
+        int randomAttack = Random.Range(0, 2);
+
+        switch (randomAttack)
+        {
+            case 0:
+                sword.GetComponent<Animator>().Play("HorizontalSwing");
+                return;
+            case 1:
+                sword.GetComponent<Animator>().Play("VerticalSwing");
+                return;
+            default:
+                return;
+        }
     }
 }
