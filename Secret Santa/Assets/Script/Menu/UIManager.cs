@@ -31,10 +31,10 @@ public class UIManager : Singleton<UIManager>
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             GameManager.Instance.StartGame();
-        }
+        }*/
     }
 
     public void SetDummyCameraActive(bool active)

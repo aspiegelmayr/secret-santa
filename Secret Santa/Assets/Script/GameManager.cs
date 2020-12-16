@@ -17,7 +17,7 @@ public class GameManager : Singleton<GameManager>
 
     List<GameObject> _instancedSystemPrefabs;
     List<AsyncOperation> _loadOperations;
-    GameState _currentGameState = GameState.PREGAME;
+    [SerializeField] GameState _currentGameState = GameState.PREGAME;
 
     private string _currentLevelName = string.Empty;
 
@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
         private set { _currentGameState = value; }
     }
 
-    private void Start()
+    void Start()
     {
         DontDestroyOnLoad(gameObject);
 
@@ -154,6 +154,8 @@ public class GameManager : Singleton<GameManager>
     public void StartGame()
     {
         LoadLevel("Main");
+        UpdateState(GameState.RUNNING);
+        UIManager.Instance.SetDummyCameraActive(true);
     }
 
     public void TogglePause()
