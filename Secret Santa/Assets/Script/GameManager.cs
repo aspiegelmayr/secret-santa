@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
 
@@ -16,7 +17,7 @@ public class GameManager : Singleton<GameManager>
     public Events.EventGameState OnGameStateChanged;
 
     List<GameObject> _instancedSystemPrefabs;
-    List<AsyncOperation> _loadOperations;
+    List<AsyncOperation> _loadOperations = new List<AsyncOperation>();
     [SerializeField] GameState _currentGameState = GameState.PREGAME;
 
     private string _currentLevelName = string.Empty;
@@ -32,28 +33,15 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
 
         _instancedSystemPrefabs = new List<GameObject>();
-        _loadOperations = new List<AsyncOperation>();
 
         InstantiateSystemPrefabs();
 
         UIManager.Instance.OnMainMenuFadeComplete.AddListener(HandleMainMenuFadeComplete);
     }
 
-    void Update()
-    {
-        if (_currentGameState == GameManager.GameState.PREGAME)
-        {
-            return;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePause();
-        }
-    }
-
     void OnLoadOperationComplete(AsyncOperation ao)
     {
-        Debug.Log("Load Complete.");
+
     }
 
     void OnUnloadOperationComplete(AsyncOperation ao)
@@ -64,10 +52,9 @@ public class GameManager : Singleton<GameManager>
 
             if (_loadOperations.Count == 0)
             {
-                UpdateState(GameState.RUNNING);
+                UpdateState(GameState.PREGAME);
             }
         }
-        Debug.Log("Unload Complete.");
     }
 
     void HandleMainMenuFadeComplete(bool fadeOut)
@@ -153,9 +140,8 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()
     {
-        LoadLevel("Main");
         UpdateState(GameState.RUNNING);
-        UIManager.Instance.SetDummyCameraActive(true);
+        LoadLevel("Main");      
     }
 
     public void TogglePause()

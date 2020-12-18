@@ -54,6 +54,18 @@ public class PlayerMovement : MonoBehaviour
     void OnAttack(InputValue input)
     {
         Attack();
+    }   
+
+    void OnMenu()
+    {
+        if (GameManager.Instance.CurrentGameState == GameManager.GameState.PREGAME)
+        {
+            return;
+        }
+        else
+        {
+            GameManager.Instance.TogglePause();
+        }
     }
 
     void Attack()

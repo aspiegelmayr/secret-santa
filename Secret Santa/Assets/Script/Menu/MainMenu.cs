@@ -1,27 +1,46 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    
+
+    [SerializeField] private Button StartBotton;
+    [SerializeField] private Button QuitBotton;
     [SerializeField] private Animation _mainMenuAnimator;
     [SerializeField] private AnimationClip _fadeInAnimation;
     [SerializeField] private AnimationClip _fadeOutAnimation;
 
-    public Events.EventFadeComplete OnMainMenuFadComplete;
+    public Events.EventFadeComplete OnMainMenuFadeComplete;
 
     void Start()
     {
         GameManager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);
+        
+        StartBotton.onClick.AddListener(HandleStartClicked);
+        QuitBotton.onClick.AddListener(HandleQuitClicked);
     }
 
     public void OnFadeOutComplete()
     {
-        OnMainMenuFadComplete.Invoke(true);
+        OnMainMenuFadeComplete.Invoke(true);
+        gameObject.SetActive(false);
     }
 
     public void OnFadeInComplete()
     {
-        OnMainMenuFadComplete.Invoke(false);
+        OnMainMenuFadeComplete.Invoke(false);
         UIManager.Instance.SetDummyCameraActive(true);
+    }
+
+    void HandleStartClicked()
+    {
+        GameManager.Instance.StartGame();
+    }
+
+    void HandleQuitClicked()
+    {
+        GameManager.Instance.QuitGame();
     }
 
     public void HandleGameStateChanged(GameManager.GameState currentState, GameManager.GameState previousState)
@@ -39,7 +58,7 @@ public class MainMenu : MonoBehaviour
 
     public void FadeIn()
     {
-        UIManager.Instance.SetDummyCameraActive(false);
+        UIManager.Instance.SetDummyCameraActive(true);
 
         _mainMenuAnimator.Stop();
         _mainMenuAnimator.clip = _fadeInAnimation;
@@ -48,6 +67,8 @@ public class MainMenu : MonoBehaviour
 
     public void FadeOut()
     {
+        UIManager.Instance.SetDummyCameraActive(false);
+
         _mainMenuAnimator.Stop();
         _mainMenuAnimator.clip = _fadeOutAnimation;
         _mainMenuAnimator.Play();
