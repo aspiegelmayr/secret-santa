@@ -5,7 +5,8 @@ using UnityEngine;
 public class PuzzleTile : MonoBehaviour
 {
     public Rigidbody2D body;
-    float speed = 5.0f;
+    float speed = 15.0f;
+    bool moving = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +15,28 @@ public class PuzzleTile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speed = 5.0f;
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        body.velocity = new Vector2(h * speed, v * speed);
+        if(!moving){
+            if(Input.GetKey(KeyCode.W)){
+            body.velocity = Vector2.up * 70.0f;
+            moving = true;
+        }
+        if(Input.GetKey(KeyCode.A)){
+            body.velocity = Vector2.left * 70.0f;
+            moving = true;
+        }
+        if(Input.GetKey(KeyCode.S)){
+            body.velocity = Vector2.down * 70.0f;
+            moving = true;
+        }
+        if(Input.GetKey(KeyCode.D)){
+            body.velocity = Vector2.right * 70.0f;
+            moving = true;
+        }
+        }
     }
+        void OnCollisionEnter2D(Collision2D other){
+            body.velocity = Vector2.down * 0.0f;
+            moving = false;
+    }
+
 }
