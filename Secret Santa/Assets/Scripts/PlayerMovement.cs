@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 walkInputVec;
 
     private Vector3 lastPos;
+    private bool isNearDoor;
+    private string doorName;
 
     // Start is called before the first frame update
     void Start()
@@ -33,34 +35,37 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        Move ();
-        Rotate ();
+        if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING)
+        {
+            Move();
+            Rotate();
+        }
     }
 
-    void Move ()
+    void Move()
     {
-        Vector3 velocity = (transform.position-lastPos)/Time.deltaTime;
-        
-        velocity += 
-            transform.forward * walkInputVec.y * (cc.isGrounded?groundSpeed:airSpeed)
-            + transform.right * walkInputVec.x * (cc.isGrounded?groundSpeed:airSpeed)
-            -Vector3.up*gravity;
-        
-        velocity /= 1+velocity.magnitude * (cc.isGrounded?walkFriction:airFriction) * Time.deltaTime;
-        
+        Vector3 velocity = (transform.position - lastPos) / Time.deltaTime;
+
+        velocity +=
+            transform.forward * walkInputVec.y * (cc.isGrounded ? groundSpeed : airSpeed)
+            + transform.right * walkInputVec.x * (cc.isGrounded ? groundSpeed : airSpeed)
+            - Vector3.up * gravity;
+
+        velocity /= 1 + velocity.magnitude * (cc.isGrounded ? walkFriction : airFriction) * Time.deltaTime;
+
         lastPos = transform.position;
 
-        cc.Move(velocity*Time.deltaTime);
+        cc.Move(velocity * Time.deltaTime);
     }
 
-    void Rotate ()
+    void Rotate()
     {
-        transform.Rotate(new Vector3 (0, lookVec.y, 0) * Time.deltaTime * cameraSpeed);
-        
-        if(look.transform.localEulerAngles.x + lookVec.x < clampX || look.transform.localEulerAngles.x + lookVec.x > 360 - clampX)
-        look.transform.Rotate(new Vector3 (lookVec.x, 0, 0) * Time.deltaTime * cameraSpeed);
+        transform.Rotate(new Vector3(0, lookVec.y, 0) * Time.deltaTime * cameraSpeed);
+
+        if (look.transform.localEulerAngles.x + lookVec.x < clampX || look.transform.localEulerAngles.x + lookVec.x > 360 - clampX)
+            look.transform.Rotate(new Vector3(lookVec.x, 0, 0) * Time.deltaTime * cameraSpeed);
     }
 
     void OnMove(InputValue input)
@@ -77,15 +82,23 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue input)
     {
-        if(cc.isGrounded){
-            cc.Move(Vector3.up*jumpForce);
+        if (cc.isGrounded)
+        {
+            cc.Move(Vector3.up * jumpForce);
         }
     }
 
     void OnAttack(InputValue input)
     {
+        if (isNearDoor)
+        {
+            GameManager.Instance.EnterDoor(doorName);
+            UIManager.Instance.SeeDoorOption(false);
+            return;
+        }
+
         Attack();
-    }   
+    }
 
     void OnMenu()
     {
@@ -113,6 +126,25 @@ public class PlayerMovement : MonoBehaviour
                 return;
             default:
                 return;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "door")
+        {
+            isNearDoor = true;
+            UIManager.Instance.SeeDoorOption(true);
+            doorName = other.name;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "door")
+        {
+            isNearDoor = false;
+            UIManager.Instance.SeeDoorOption(false);
         }
     }
 }
