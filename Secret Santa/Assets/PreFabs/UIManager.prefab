@@ -3864,9 +3864,20 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.4357224, y: 0.73529565, z: 1.8976351}
   m_Children:
+<<<<<<< Updated upstream
   - {fileID: 4293100574128572267}
   m_Father: {fileID: 4519348753643394437}
   m_RootOrder: 4
+=======
+  - {fileID: 7711327085159743962}
+  - {fileID: 7711327084594271474}
+  - {fileID: 7711327084841898809}
+  - {fileID: 939347478}
+  - {fileID: 4519348753643394437}
+  - {fileID: 5853740583801456513}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -4286,4 +4297,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
