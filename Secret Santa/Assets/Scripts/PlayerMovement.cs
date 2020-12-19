@@ -37,11 +37,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING)
-        {
+        //if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING)
+        //{
             Move();
             Rotate();
-        }
+        //}
     }
 
     void Move()
