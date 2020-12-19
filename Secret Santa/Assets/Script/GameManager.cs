@@ -17,9 +17,12 @@ public class GameManager : Singleton<GameManager>
 
     List<GameObject> _instancedSystemPrefabs;
     List<AsyncOperation> _loadOperations = new List<AsyncOperation>();
-    [SerializeField] GameState _currentGameState = GameState.PREGAME;
+    GameState _currentGameState = GameState.PREGAME;
 
     private string _currentLevelName = string.Empty;
+    public bool hasKizune;
+    public bool hasHelmet;
+    private GameObject kizune;
 
     public GameState CurrentGameState
     {
@@ -40,7 +43,11 @@ public class GameManager : Singleton<GameManager>
 
     void OnLoadOperationComplete(AsyncOperation ao)
     {
-
+        if (GameObject.Find("Kizune") != null)
+        {
+            kizune = GameObject.Find("Kizune");
+            kizune.SetActive(false);
+        }
     }
 
     void OnUnloadOperationComplete(AsyncOperation ao)
@@ -186,5 +193,10 @@ public class GameManager : Singleton<GameManager>
             default:
                 return;
         }
+    }
+
+    public void ToggleKizune()
+    {
+        kizune.SetActive(!kizune.activeInHierarchy);
     }
 }

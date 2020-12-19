@@ -6,6 +6,8 @@ TagManager:
   tags:
   - wall
   - door
+  - collectable
+  - kizune
   layers:
   - Default
   - TransparentFX
