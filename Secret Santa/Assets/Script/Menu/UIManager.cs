@@ -6,6 +6,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private PauseMenu _pauseMenu;
 
     [SerializeField] private Camera _dummyCamera;
+    [SerializeField] private GameObject _doorText;
 
     public Events.EventFadeComplete OnMainMenuFadeComplete;
 
@@ -28,5 +29,10 @@ public class UIManager : Singleton<UIManager>
     public void SetDummyCameraActive(bool active)
     {
         _dummyCamera.gameObject.SetActive(active);
+    }
+
+    public void SeeDoorOption(bool active)
+    {
+        _doorText.gameObject.SetActive(active);
     }
 }

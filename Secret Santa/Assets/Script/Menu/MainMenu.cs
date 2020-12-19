@@ -30,7 +30,6 @@ public class MainMenu : MonoBehaviour
     public void OnFadeInComplete()
     {
         OnMainMenuFadeComplete.Invoke(false);
-        UIManager.Instance.SetDummyCameraActive(true);
     }
 
     void HandleStartClicked()
@@ -58,7 +57,7 @@ public class MainMenu : MonoBehaviour
 
     public void FadeIn()
     {
-        UIManager.Instance.SetDummyCameraActive(true);
+        gameObject.SetActive(true);
 
         _mainMenuAnimator.Stop();
         _mainMenuAnimator.clip = _fadeInAnimation;
