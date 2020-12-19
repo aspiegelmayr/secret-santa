@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3057957846045093363}
   - component: {fileID: 953451058}
   m_Layer: 0
-  m_Name: Player 2
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,13 +212,13 @@ MonoBehaviour:
   look: {fileID: 6854755282968806181}
   sword: {fileID: 4940601065899001080}
   cameraSpeed: 40
-  groundSpeed: 20
+  groundSpeed: 3
   airSpeed: 0.5
   clampX: 85
-  jumpForce: 0.15
+  jumpForce: 0.05
   walkFriction: 20
   airFriction: 1
-  gravity: 0.5
+  gravity: 0.2
 --- !u!143 &953451058
 CharacterController:
   m_ObjectHideFlags: 0

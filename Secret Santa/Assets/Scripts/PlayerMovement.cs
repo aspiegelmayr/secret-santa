@@ -146,12 +146,13 @@ public class PlayerMovement : MonoBehaviour
             if (other.name == "KizunePlüsch" && !GameManager.Instance.hasHelmet)
             {
                 GameManager.Instance.hasKizune = true;
-                GameManager.Instance.ToggleKizune();
+                UIManager.Instance.KizuneTalk(1);
             }
 
             if (other.name == "Helmet" && !GameManager.Instance.hasHelmet)
             {
                 GameManager.Instance.hasHelmet = true;
+                UIManager.Instance.KizuneTalk(2);
             }
         }
     }
