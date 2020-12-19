@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 39361274715166668}
   - component: {fileID: 2935721161446669192}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: colider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6048689, y: 0.84794915, z: 0.4889499}
-  m_Center: {x: -0.5670414, y: -0.5771819, z: -0.028187659}
+  m_Size: {x: 0.4829092, y: 0.84794915, z: 0.4889499}
+  m_Center: {x: -0.62802124, y: -0.5771819, z: -0.028187659}
 --- !u!1 &3671048550406107523
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,8 +53,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8667097276239087264}
-  - component: {fileID: 3323616488112321191}
-  - component: {fileID: 3823641574006985437}
   m_Layer: 0
   m_Name: stairShelf_prefab
   m_TagString: Untagged
@@ -79,32 +77,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3323616488112321191
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3671048550406107523}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.4508212, y: 1.0123945, z: 0.41727096}
-  m_Center: {x: -4.695028, y: 0.501951, z: 0.024306335}
---- !u!65 &3823641574006985437
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3671048550406107523}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.48792374, y: 0.53442127, z: 0.3892471}
-  m_Center: {x: -5.1214113, y: 1.2568175, z: 0.020038381}
 --- !u!1 &6369727151994717485
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +88,7 @@ GameObject:
   - component: {fileID: 3088556510727053796}
   - component: {fileID: 3268081926732471592}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: colider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,8 +119,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8806105, y: 1.3098313, z: 0.4889499}
-  m_Center: {x: -0.00992012, y: -0.3462408, z: -0.028187659}
+  m_Size: {x: 2.016738, y: 1.3098313, z: 0.4889499}
+  m_Center: {x: 0.058143616, y: -0.3462408, z: -0.028187659}
 --- !u!1001 &199080762173893175
 PrefabInstance:
   m_ObjectHideFlags: 0
