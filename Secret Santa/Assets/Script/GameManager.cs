@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
 
@@ -62,6 +61,7 @@ public class GameManager : Singleton<GameManager>
         if (!fadeOut)
         {    
             UnloadLevel(_currentLevelName);
+            UIManager.Instance.SetDummyCameraActive(true);
         }
     }
 
@@ -74,14 +74,17 @@ public class GameManager : Singleton<GameManager>
         {
             case GameState.PREGAME:
                 Time.timeScale = 1.0f;
+                Cursor.visible = true;
                 break;
 
             case GameState.RUNNING:
                 Time.timeScale = 1.0f;
+                Cursor.visible = false;
                 break;
 
             case GameState.PAUSE:
                 Time.timeScale = 0.0f;
+                Cursor.visible = true;
                 break;
 
             default:
@@ -141,7 +144,7 @@ public class GameManager : Singleton<GameManager>
     public void StartGame()
     {
         UpdateState(GameState.RUNNING);
-        LoadLevel("Main");      
+        LoadLevel("child_room");      
     }
 
     public void TogglePause()
@@ -159,5 +162,29 @@ public class GameManager : Singleton<GameManager>
         // implement features for quitting
 
         Application.Quit();
+    }
+
+    public void EnterDoor(string door)
+    {
+        switch (door)
+        {
+            case "childRoomDoor":
+                UnloadLevel(_currentLevelName);
+                LoadLevel("child_room");
+                return;
+
+            case "livingRoomDoor":
+                UnloadLevel(_currentLevelName);
+                LoadLevel("livingroom");
+                return;
+
+            case "kitchenRoomDoor":
+                //LoadLevel("child_room");
+                //UnloadLevel(_currentLevelName);
+                return;
+
+            default:
+                return;
+        }
     }
 }
