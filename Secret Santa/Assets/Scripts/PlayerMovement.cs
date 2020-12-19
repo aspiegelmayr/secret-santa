@@ -90,14 +90,17 @@ public class PlayerMovement : MonoBehaviour
 
     void OnAttack(InputValue input)
     {
-        if (isNearDoor)
+        if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING)
         {
-            GameManager.Instance.EnterDoor(doorName);
-            UIManager.Instance.SeeDoorOption(false);
-            return;
-        }
+            if (isNearDoor)
+            {
+                GameManager.Instance.EnterDoor(doorName);
+                UIManager.Instance.SeeDoorOption(false);
+                return;
+            }
 
-        Attack();
+            Attack();
+        }
     }
 
     void OnMenu()
@@ -136,6 +139,20 @@ public class PlayerMovement : MonoBehaviour
             isNearDoor = true;
             UIManager.Instance.SeeDoorOption(true);
             doorName = other.name;
+        }
+        if (other.tag == "collectable")
+        {
+            other.gameObject.SetActive(false);
+            if (other.name == "KizunePlüsch" && !GameManager.Instance.hasHelmet)
+            {
+                GameManager.Instance.hasKizune = true;
+                GameManager.Instance.ToggleKizune();
+            }
+
+            if (other.name == "Helmet" && !GameManager.Instance.hasHelmet)
+            {
+                GameManager.Instance.hasHelmet = true;
+            }
         }
     }
 
