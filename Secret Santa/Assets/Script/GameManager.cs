@@ -41,6 +41,8 @@ public class GameManager : Singleton<GameManager>
         InstantiateSystemPrefabs();
 
         UIManager.Instance.OnMainMenuFadeComplete.AddListener(HandleMainMenuFadeComplete);
+        UIManager.Instance.HandleDeath.AddListener(HandleDeathScreen);
+        
     }
 
     void OnLoadOperationComplete(AsyncOperation ao)
@@ -86,6 +88,13 @@ public class GameManager : Singleton<GameManager>
             UnloadLevel(_currentLevelName);
             UIManager.Instance.SetDummyCameraActive(true);
         }
+    }
+
+    void HandleDeathScreen(bool x)
+    {
+        UnloadLevel(_currentLevelName);
+        LoadLevel("livingroom");
+        UIManager.Instance.StopDeath();
     }
 
     void UpdateState (GameState state)
@@ -193,6 +202,11 @@ public class GameManager : Singleton<GameManager>
 
     public void EnterDoor(string door)
     {
+        if (!hasKizune)
+        {
+            UIManager.Instance.SetNeed(true);
+            return;
+        }
         switch (door)
         {
             case "childRoomDoor":

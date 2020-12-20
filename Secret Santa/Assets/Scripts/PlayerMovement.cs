@@ -28,20 +28,18 @@ public class PlayerMovement : MonoBehaviour
     private string doorName;
     
 
-    // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING)
-        //{
+        if (GameManager.Instance.CurrentGameState == GameManager.GameState.RUNNING)
+        {
             Move();
             Rotate();
-        //}
+        }
     }
 
     void Move()
@@ -157,7 +155,6 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.SetActive(false);
             if (other.name == "KizunePlüsch" && !GameManager.Instance.hasHelmet)
             {
-                GameManager.Instance.hasKizune = true;
                 UIManager.Instance.KizuneTalk(1);
             }
 
@@ -167,6 +164,10 @@ public class PlayerMovement : MonoBehaviour
                 UIManager.Instance.KizuneTalk(2);
             }
         }
+        if (other.tag == "light")
+        {
+            UIManager.Instance.StartDeath();
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -175,6 +176,11 @@ public class PlayerMovement : MonoBehaviour
         {
             isNearDoor = false;
             UIManager.Instance.SeeDoorOption(false);
+            UIManager.Instance.SetNeed(false);
+        }
+        if (other.tag == "light")
+        {
+            UIManager.Instance.StopDeath();
         }
     }
 

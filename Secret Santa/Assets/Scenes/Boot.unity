@@ -155,10 +155,10 @@ MonoBehaviour:
   OnGameStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  _currentGameState: 0
   hasKizune: 0
   hasHelmet: 0
-  kizune: {fileID: 8039647234479499430, guid: cc99a886e5a0330438a0c66be60ea3bf, type: 3}
+  enteredLR: 0
+  enteredK: 0
 --- !u!4 &1541887983
 Transform:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ TagManager:
   - kizune
   - ground
   - stereo
+  - light
   layers:
   - Default
   - TransparentFX
