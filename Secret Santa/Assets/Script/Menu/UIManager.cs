@@ -11,6 +11,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private Camera _dummyCamera;
     [SerializeField] private GameObject _doorText;
     [SerializeField] private GameObject _needText;
+    [SerializeField] private GameObject _wonText;
     public GameObject[] KizuneTexte;
     
     public Events.EventFadeComplete OnMainMenuFadeComplete;
@@ -73,6 +74,11 @@ public class UIManager : Singleton<UIManager>
     public void SetNeed(bool active)
     {
         _needText.gameObject.SetActive(active);
+    }
+
+    public void SetWon(bool active)
+    {
+        _wonText.gameObject.SetActive(active);
     }
 
     public void StartDeath()

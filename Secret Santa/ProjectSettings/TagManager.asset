@@ -12,6 +12,8 @@ TagManager:
   - stereo
   - light
   - sword
+  - maskBar
+  - pusha
   layers:
   - Default
   - TransparentFX
