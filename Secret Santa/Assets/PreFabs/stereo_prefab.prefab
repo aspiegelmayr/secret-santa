@@ -250,6 +250,7 @@ MonoBehaviour:
   target: {fileID: 0}
   projectile: {fileID: 6029136680806134551, guid: a770ed9df874b6243b4b749f1f89e0d6,
     type: 3}
+  mat: {fileID: 2100000, guid: efe13ba5d17dfc941bbe6d289aac43cb, type: 2}
 --- !u!54 &5946777411297890853
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -519,6 +520,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: f7b2c9f5cb466f6438b6e0ecd5d2b3de,
+        type: 3}
+      propertyPath: m_Name
+      value: speakers
       objectReference: {fileID: 0}
     - target: {fileID: 882129737928793925, guid: f7b2c9f5cb466f6438b6e0ecd5d2b3de,
         type: 3}

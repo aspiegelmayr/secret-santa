@@ -11,9 +11,11 @@ public class stereo : MonoBehaviour
 
     private List<GameObject> pooledProjectiles;
     private int maxProjectiles = 5;
+    [SerializeField] Material mat;
     // Start is called before the first frame update
     void Start()
     {
+        Deactivate();
         Invoke("Activate",5f);
         pooledProjectiles = new List<GameObject>();
         for(int i=0; i<maxProjectiles; i++){
@@ -26,9 +28,11 @@ public class stereo : MonoBehaviour
 
     public void Activate(){
         InvokeRepeating("LaunchProjectile", 0f, shootInterval);
+        mat.EnableKeyword("_EMISSION");
     }
     public void Deactivate(){
         CancelInvoke("LaunchProjectile");
+        mat.DisableKeyword("_EMISSION");
     }
 
     void LaunchProjectile(){
