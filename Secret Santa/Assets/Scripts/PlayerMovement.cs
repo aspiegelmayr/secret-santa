@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject look;
     public GameObject sword;
+    public Vector3 externalForce = Vector3.zero;
     [SerializeField] float cameraSpeed = 70f;
     [SerializeField] float groundSpeed = 1f;
     [SerializeField] float airSpeed = 1f;

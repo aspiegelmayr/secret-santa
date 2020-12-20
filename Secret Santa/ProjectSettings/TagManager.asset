@@ -8,6 +8,8 @@ TagManager:
   - door
   - collectable
   - kizune
+  - ground
+  - stereo
   layers:
   - Default
   - TransparentFX
