@@ -473,7 +473,7 @@ MonoBehaviour:
   cameraSpeed: 40
   speed: 3
   clampX: 85
-  jumpForce: 7
+  jumpForce: 5
   gravity: 0.1
   maxSpeedChange: 5
 --- !u!143 &953451058
