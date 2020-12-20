@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 953451058}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,14 +469,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   look: {fileID: 6854755282968806181}
   sword: {fileID: 4940601065899001080}
+  externalForce: {x: 0, y: 0, z: 0}
   cameraSpeed: 40
-  groundSpeed: 3
-  airSpeed: 0.5
+  speed: 3
   clampX: 85
-  jumpForce: 0.05
-  walkFriction: 20
-  airFriction: 1
-  gravity: 0.2
+  jumpForce: 7
+  gravity: 0.1
+  maxSpeedChange: 5
 --- !u!143 &953451058
 CharacterController:
   m_ObjectHideFlags: 0

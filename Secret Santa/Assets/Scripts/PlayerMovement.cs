@@ -92,8 +92,7 @@ public class PlayerMovement : MonoBehaviour
     void OnJump(InputValue input)
     {
         if (cc.isGrounded)
-        {   
-            Debug.Log("jump");
+        {
             velocity.y = jumpForce;
         }
     }

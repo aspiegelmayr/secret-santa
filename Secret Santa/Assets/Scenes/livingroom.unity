@@ -1624,26 +1624,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3057957846045093363, guid: 3982e186c0d9f114483901fc359afa18,
-        type: 3}
-      propertyPath: speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3057957846045093363, guid: 3982e186c0d9f114483901fc359afa18,
-        type: 3}
-      propertyPath: jumpForce
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3057957846045093363, guid: 3982e186c0d9f114483901fc359afa18,
-        type: 3}
-      propertyPath: gravity
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3057957846045093363, guid: 3982e186c0d9f114483901fc359afa18,
-        type: 3}
-      propertyPath: maxSpeedChange
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6854755282597033934, guid: 3982e186c0d9f114483901fc359afa18,
         type: 3}
       propertyPath: m_LocalPosition.x
