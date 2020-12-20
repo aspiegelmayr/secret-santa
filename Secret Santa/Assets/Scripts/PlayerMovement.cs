@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isNearDoor;
     private string doorName;
+
     
 
     void Start()
@@ -149,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
             UIManager.Instance.SeeDoorOption(true);
             doorName = other.name;
         }
+
         if (other.tag == "collectable")
         {
             other.gameObject.SetActive(false);

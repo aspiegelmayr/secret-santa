@@ -231,7 +231,10 @@ public class GameManager : Singleton<GameManager>
 
     public void ToggleKizune()
     {
-        kizune.SetActive(!kizune.activeInHierarchy);
+        if(kizune != null)
+        {
+            kizune.SetActive(!kizune.activeInHierarchy);
+        }
     }
 
     void FirstTimeLRoom()
