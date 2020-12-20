@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         velocity = 
               transform.forward * SWIVClampedMag.y * speed
             + transform.right * SWIVClampedMag.x * speed
-            + Vector3.up * (velocity.y - gravity)
+            + Vector3.up * (velocity.y - gravity * Time.deltaTime)
             + Vector3.right * externalForce.x
             + Vector3.forward * externalForce.z;
         

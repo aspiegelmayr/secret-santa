@@ -473,8 +473,8 @@ MonoBehaviour:
   cameraSpeed: 40
   speed: 3
   clampX: 85
-  jumpForce: 7
-  gravity: 0.1
+  jumpForce: 5
+  gravity: 15
   maxSpeedChange: 5
   grunt1: {fileID: 5969842568095140052}
   grunt2: {fileID: 8183165834639869599}
