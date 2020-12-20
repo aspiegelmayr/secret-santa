@@ -14,7 +14,7 @@ public class stereo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Activate();
+        Invoke("Activate",5f);
         pooledProjectiles = new List<GameObject>();
         for(int i=0; i<maxProjectiles; i++){
             GameObject obj = (GameObject)Instantiate(projectile);
@@ -22,12 +22,6 @@ public class stereo : MonoBehaviour
             obj.transform.parent = gameObject.transform;
             pooledProjectiles.Add(obj);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Activate(){
@@ -56,5 +50,11 @@ public class stereo : MonoBehaviour
         }
         
         return null;
+    }
+
+    void OnTriggerEnter(Collider other){
+        if(other.tag == "sword"){
+            Deactivate();
+        }
     }
 }
