@@ -473,9 +473,15 @@ MonoBehaviour:
   cameraSpeed: 40
   speed: 3
   clampX: 85
-  jumpForce: 5
+  jumpForce: 7
   gravity: 0.1
   maxSpeedChange: 5
+  grunt1: {fileID: 5969842568095140052}
+  grunt2: {fileID: 8183165834639869599}
+  grunt3: {fileID: 4960050182603090373}
+  footstep: {fileID: 9157944471383183906}
+  swoosh1: {fileID: 6641462086662987456}
+  swoosh2: {fileID: 4507987219828942896}
 --- !u!143 &953451058
 CharacterController:
   m_ObjectHideFlags: 0
@@ -800,7 +806,7 @@ PrefabInstance:
     - target: {fileID: 3151507212526624458, guid: 8916bb393ae8164418fa6822b509c0ec,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99
+      value: -1.198
       objectReference: {fileID: 0}
     - target: {fileID: 3151507212526624458, guid: 8916bb393ae8164418fa6822b509c0ec,
         type: 3}
@@ -863,6 +869,18 @@ GameObject:
 --- !u!4 &7153711805358282502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3151507212526624458, guid: 8916bb393ae8164418fa6822b509c0ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 5258922200569547212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6641462086662987456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1499777241915627276, guid: 8916bb393ae8164418fa6822b509c0ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 5258922200569547212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4507987219828942896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8535701855735030268, guid: 8916bb393ae8164418fa6822b509c0ec,
     type: 3}
   m_PrefabInstance: {fileID: 5258922200569547212}
   m_PrefabAsset: {fileID: 0}

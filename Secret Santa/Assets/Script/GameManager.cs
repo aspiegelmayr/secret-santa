@@ -212,20 +212,20 @@ public class GameManager : Singleton<GameManager>
             case "childRoomDoor":
                 UnloadLevel(_currentLevelName);
                 LoadLevel("child_room");
-                return;
+                break;
 
             case "livingRoomDoor":
                 UnloadLevel(_currentLevelName);
                 LoadLevel("livingroom");
-                return;
+                break;
 
-            case "kitchenRoomDoor":
-                //LoadLevel("kitchen");
-                //UnloadLevel(_currentLevelName);
-                return;
+            case "kitchenDoor":
+                UnloadLevel(_currentLevelName);
+                LoadLevel("kitchen");
+                break;
 
             default:
-                return;
+                break;
         }
     }
 

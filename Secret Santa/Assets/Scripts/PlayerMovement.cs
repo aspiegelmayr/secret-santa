@@ -1,6 +1,4 @@
-﻿//using System.Diagnostics;
-//using UnityEditor.Build.Player;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 
@@ -16,6 +14,13 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float gravity = 1;
     [SerializeField] float maxSpeedChange = 4f;
+    [SerializeField] GameObject grunt1;   
+    [SerializeField] GameObject grunt2;
+    [SerializeField] GameObject grunt3;
+    [SerializeField] GameObject footstep;
+    [SerializeField] GameObject swoosh1;   
+    [SerializeField] GameObject swoosh2;
+
 
     private CharacterController cc;
     private Vector3 lookVec;
@@ -44,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        footstep.GetComponent<AudioSource>().Play();
         float MSC = maxSpeedChange * Time.deltaTime;
 
         smoothWalkInputVec.x += Mathf.Clamp(walkInputVec.x - smoothWalkInputVec.x, -MSC, MSC);
@@ -91,6 +97,23 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue input)
     {
+        int rnd = Random.Range(1, 4);
+
+        switch (rnd)
+        {
+            case 1:
+                grunt1.GetComponent<AudioSource>().Play();
+                break;
+            case 2:
+                grunt2.GetComponent<AudioSource>().Play();
+                break;
+            case 3:
+                grunt3.GetComponent<AudioSource>().Play();
+                break;
+            default:
+                break;
+        }
+
         if (cc.isGrounded)
         {   
             velocity.y = jumpForce;
@@ -127,17 +150,30 @@ public class PlayerMovement : MonoBehaviour
     void Attack()
     {
         int randomAttack = Random.Range(0, 2);
+        int rnd = Random.Range(0, 2);
 
         switch (randomAttack)
         {
             case 0:
                 sword.GetComponent<Animator>().Play("HorizontalSwing");
-                return;
+                break;
             case 1:
                 sword.GetComponent<Animator>().Play("VerticalSwing");
-                return;
+                break;
             default:
-                return;
+                break;
+        }
+
+        switch (rnd)
+        {
+            case 0:
+                swoosh1.GetComponent<AudioSource>().Play();
+                break;
+            case 1:
+                swoosh2.GetComponent<AudioSource>().Play();
+                break;
+            default:
+                break;
         }
     }
 
