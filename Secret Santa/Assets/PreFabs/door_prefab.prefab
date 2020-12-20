@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6861587467521213034}
   - component: {fileID: 2244643623717109146}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: "T\xFCr \xF6ffnen"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c2774a7022f2a9d43a26eec58c56f6b9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
