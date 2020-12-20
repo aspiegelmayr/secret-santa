@@ -22,6 +22,8 @@ public class GameManager : Singleton<GameManager>
     private string _currentLevelName = string.Empty;
     public bool hasKizune;
     public bool hasHelmet;
+    public bool enteredLR;
+    public bool enteredK;
     private GameObject kizune;
 
     public GameState CurrentGameState
@@ -47,6 +49,20 @@ public class GameManager : Singleton<GameManager>
         {
             kizune = GameObject.Find("Kizune");
             kizune.SetActive(false);
+        }
+        if (_currentLevelName == "livingroom" && !enteredLR)
+        {
+            UIManager.Instance.KizuneTalk(5);
+            enteredLR = true;
+        }
+        if (_currentLevelName == "kitchen" && !enteredK)
+        {
+            UIManager.Instance.KizuneTalk(3);
+            enteredLR = true;
+        }
+        if (GameObject.Find("KizunePlüsch") != null && hasKizune)
+        {
+            GameObject.Find("KizunePlüsch").SetActive(false);
         }
     }
 
@@ -161,7 +177,11 @@ public class GameManager : Singleton<GameManager>
 
     public void RestartGame()
     {
-        UpdateState(GameState.PREGAME);
+        UpdateState(GameState.PREGAME);        
+        hasKizune = false;
+        hasHelmet = false;
+        enteredLR = false;
+        enteredK = false;
     }
 
     public void QuitGame()
@@ -186,7 +206,7 @@ public class GameManager : Singleton<GameManager>
                 return;
 
             case "kitchenRoomDoor":
-                //LoadLevel("child_room");
+                //LoadLevel("kitchen");
                 //UnloadLevel(_currentLevelName);
                 return;
 
@@ -198,5 +218,10 @@ public class GameManager : Singleton<GameManager>
     public void ToggleKizune()
     {
         kizune.SetActive(!kizune.activeInHierarchy);
+    }
+
+    void FirstTimeLRoom()
+    {
+        UIManager.Instance.KizuneTalk(5);
     }
 }

@@ -1035,6 +1035,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 271247890658692094, guid: eab3abdf3da21614eb4c16f804326f79,
+        type: 3}
+      propertyPath: m_Name
+      value: "T\xFCr \xF6ffnen"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244643623717109146, guid: eab3abdf3da21614eb4c16f804326f79,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 6342962059254213752, guid: eab3abdf3da21614eb4c16f804326f79,
         type: 3}
       propertyPath: m_Name
