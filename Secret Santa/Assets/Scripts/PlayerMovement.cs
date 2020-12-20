@@ -10,29 +10,28 @@ public class PlayerMovement : MonoBehaviour
     public GameObject sword;
     public Vector3 externalForce = Vector3.zero;
     [SerializeField] float cameraSpeed = 70f;
-    [SerializeField] float groundSpeed = 1f;
-    [SerializeField] float airSpeed = 1f;
+    [SerializeField] float speed = 1f;
     [SerializeField] float clampX = 85f;
-    [SerializeField] float jumpForce = 1000;
+    [SerializeField] float jumpForce = 10;
 
-    [SerializeField] float walkFriction = 5;
-    [SerializeField] float airFriction = 1;
     [SerializeField] float gravity = 1;
+    [SerializeField] float maxSpeedChange = 4f;
 
     private CharacterController cc;
-    private Vector3 moveVec;
     private Vector3 lookVec;
-    private Vector2 walkInputVec;
+    private Vector2 walkInputVec = Vector3.zero;
+    private Vector2 smoothWalkInputVec = Vector3.zero;
+    private Vector3 velocity = Vector3.zero;
+    
 
-    private Vector3 lastPos;
     private bool isNearDoor;
     private string doorName;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        lastPos = transform.position;
     }
 
     // Update is called once per frame
@@ -47,18 +46,29 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        Vector3 velocity = (transform.position - lastPos) / Time.deltaTime;
+        float MSC = maxSpeedChange * Time.deltaTime;
 
-        velocity +=
-            transform.forward * walkInputVec.y * (cc.isGrounded ? groundSpeed : airSpeed)
-            + transform.right * walkInputVec.x * (cc.isGrounded ? groundSpeed : airSpeed)
-            - Vector3.up * gravity;
+        smoothWalkInputVec.x += Mathf.Clamp(walkInputVec.x - smoothWalkInputVec.x, -MSC, MSC);
+        smoothWalkInputVec.y += Mathf.Clamp(walkInputVec.y - smoothWalkInputVec.y, -MSC, MSC);
 
-        velocity /= 1 + velocity.magnitude * (cc.isGrounded ? walkFriction : airFriction) * Time.deltaTime;
+        smoothWalkInputVec.x = Mathf.Clamp(smoothWalkInputVec.x, -1f, 1f);
+        smoothWalkInputVec.y = Mathf.Clamp(smoothWalkInputVec.y, -1f, 1f);
 
-        lastPos = transform.position;
+        Vector2 SWIVClampedMag = Vector2.ClampMagnitude(smoothWalkInputVec,1f);
 
+        velocity = 
+              transform.forward * SWIVClampedMag.y * speed
+            + transform.right * SWIVClampedMag.x * speed
+            + Vector3.up * (velocity.y - gravity)
+            + Vector3.right * externalForce.x
+            + Vector3.forward * externalForce.z;
+        
+        externalForce *= 0.95f;
+        
         cc.Move(velocity * Time.deltaTime);
+        if(cc.isGrounded){
+            velocity.y = Mathf.Max(-0.3f,velocity.y);
+        }
     }
 
     void Rotate()
@@ -84,8 +94,9 @@ public class PlayerMovement : MonoBehaviour
     void OnJump(InputValue input)
     {
         if (cc.isGrounded)
-        {
-            cc.Move(Vector3.up * jumpForce);
+        {   
+            Debug.Log("jump");
+            velocity.y = jumpForce;
         }
     }
 
@@ -166,4 +177,5 @@ public class PlayerMovement : MonoBehaviour
             UIManager.Instance.SeeDoorOption(false);
         }
     }
+
 }

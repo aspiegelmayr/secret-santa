@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundWave_Projectile : MonoBehaviour
 {
     [SerializeField] float speed = 4f;
-
+    [SerializeField] float pushForce = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +25,9 @@ public class SoundWave_Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if(other.tag == "Player"){
-            //Destroy(gameObject);
             CancelInvoke("Deactivate");
             gameObject.SetActive(false);
+            other.GetComponent<PlayerMovement>().externalForce += transform.forward * pushForce;
         }
             
     }

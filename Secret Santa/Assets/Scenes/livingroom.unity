@@ -1671,6 +1671,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3057957846045093363, guid: 3982e186c0d9f114483901fc359afa18,
+        type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057957846045093363, guid: 3982e186c0d9f114483901fc359afa18,
+        type: 3}
+      propertyPath: jumpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057957846045093363, guid: 3982e186c0d9f114483901fc359afa18,
+        type: 3}
+      propertyPath: gravity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057957846045093363, guid: 3982e186c0d9f114483901fc359afa18,
+        type: 3}
+      propertyPath: maxSpeedChange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6854755282597033934, guid: 3982e186c0d9f114483901fc359afa18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4450,6 +4470,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 901639549}
+    - target: {fileID: 6836817507804756856, guid: d96a2242e52d0a542ba6ec9b2f62d4c8,
+        type: 3}
+      propertyPath: shootInterval
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d96a2242e52d0a542ba6ec9b2f62d4c8, type: 3}
 --- !u!1001 &7071356214721980062
