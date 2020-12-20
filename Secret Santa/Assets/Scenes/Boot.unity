@@ -155,7 +155,7 @@ MonoBehaviour:
   OnGameStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  hasKizune: 0
+  hasKizune: 1
   hasHelmet: 0
   enteredLR: 0
   enteredK: 0
