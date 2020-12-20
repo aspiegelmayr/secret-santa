@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         
         cc.Move(velocity * Time.deltaTime);
         if(cc.isGrounded){
-            velocity.y = Mathf.Max(-0.3f,velocity.y);
+            velocity.y = Mathf.Max(-1f,velocity.y);
         }
     }
 
@@ -93,7 +93,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (cc.isGrounded)
         {   
-            Debug.Log("jump");
             velocity.y = jumpForce;
         }
     }

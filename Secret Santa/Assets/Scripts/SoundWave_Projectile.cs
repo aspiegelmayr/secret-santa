@@ -19,7 +19,6 @@ public class SoundWave_Projectile : MonoBehaviour
     }
 
     public void startTimer(){
-        Debug.Log("t");
         Invoke("Deactivate",5f);
     }
 
