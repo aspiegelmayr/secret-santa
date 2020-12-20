@@ -8,35 +8,27 @@ public class stereo : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] GameObject projectile;
     
-    public bool shooting{
-        set{
-            if(value){
-                InvokeRepeating("LaunchProjectile", 0f, shootInterval);
-            }else{
-                CancelInvoke("LaunchWave");
-            }
-        }
-    }
 
     private List<GameObject> pooledProjectiles;
-    private int maxProjectiles = 20;
+    private int maxProjectiles = 5;
     // Start is called before the first frame update
     void Start()
     {
-        shooting = true;
-
+        Invoke("Activate",5f);
         pooledProjectiles = new List<GameObject>();
         for(int i=0; i<maxProjectiles; i++){
             GameObject obj = (GameObject)Instantiate(projectile);
             obj.SetActive(false);
+            obj.transform.parent = gameObject.transform;
             pooledProjectiles.Add(obj);
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Activate(){
+        InvokeRepeating("LaunchProjectile", 0f, shootInterval);
+    }
+    public void Deactivate(){
+        CancelInvoke("LaunchProjectile");
     }
 
     void LaunchProjectile(){
@@ -58,5 +50,11 @@ public class stereo : MonoBehaviour
         }
         
         return null;
+    }
+
+    void OnTriggerEnter(Collider other){
+        if(other.tag == "sword"){
+            Deactivate();
+        }
     }
 }
