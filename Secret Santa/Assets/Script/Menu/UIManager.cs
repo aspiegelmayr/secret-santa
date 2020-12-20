@@ -6,16 +6,20 @@ public class UIManager : Singleton<UIManager>
 {
     [SerializeField] private MainMenu _mainMenu;
     [SerializeField] private PauseMenu _pauseMenu;
+    [SerializeField] private DeathScreen _deathScreen;
 
     [SerializeField] private Camera _dummyCamera;
     [SerializeField] private GameObject _doorText;
+    [SerializeField] private GameObject _needText;
     public GameObject[] KizuneTexte;
     
     public Events.EventFadeComplete OnMainMenuFadeComplete;
+    public Events.EventDeath HandleDeath;
     private int textCount;
 
     void Start()
     {
+        _deathScreen.HandleDeath.AddListener(OnDeath);
         _mainMenu.OnMainMenuFadeComplete.AddListener(HandleMainMenuFadeComplete);
         GameManager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);
     }
@@ -28,6 +32,11 @@ public class UIManager : Singleton<UIManager>
     void HandleGameStateChanged(GameManager.GameState currentState, GameManager.GameState previousState)
     {
         _pauseMenu.gameObject.SetActive(currentState == GameManager.GameState.PAUSE);
+    }
+
+    void OnDeath(bool tru)
+    {
+        HandleDeath.Invoke(true);
     }
 
     public void SetDummyCameraActive(bool active)
@@ -56,7 +65,23 @@ public class UIManager : Singleton<UIManager>
             yield return new WaitForSeconds(5.0f);
             KizuneTexte[textCount].SetActive(false);
         }
-        
+
+        GameManager.Instance.hasKizune = true;
         GameManager.Instance.ToggleKizune();
+    }
+
+    public void SetNeed(bool active)
+    {
+        _needText.gameObject.SetActive(active);
+    }
+
+    public void StartDeath()
+    {
+        _deathScreen.FadeIn();
+    }
+
+    public void StopDeath()
+    {
+        _deathScreen.StopDeath();
     }
 }
