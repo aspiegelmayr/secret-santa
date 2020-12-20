@@ -199,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
                 UIManager.Instance.KizuneTalk(2);
             }
         }
-        if (other.tag == "light")
+        if (other.tag == "light" && !GameManager.Instance.hasHelmet)
         {
             UIManager.Instance.StartDeath();
         }

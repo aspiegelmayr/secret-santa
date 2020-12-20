@@ -52,19 +52,31 @@ public class GameManager : Singleton<GameManager>
             kizune = GameObject.Find("Kizune");
             kizune.SetActive(false);
         }
+        
         if (_currentLevelName == "livingroom" && !enteredLR)
         {
             UIManager.Instance.KizuneTalk(5);
             enteredLR = true;
         }
+
         if (_currentLevelName == "kitchen" && !enteredK)
         {
             UIManager.Instance.KizuneTalk(3);
             enteredLR = true;
         }
+
         if (GameObject.Find("KizunePlüsch") != null && hasKizune)
         {
             GameObject.Find("KizunePlüsch").SetActive(false);
+        }
+
+        if (GameObject.Find("mask_moster_prefab") != null && !hasHelmet)
+        {
+            GameObject.Find("mask_moster_prefab").SetActive(false);
+        }
+        else
+        {
+            GameObject.Find("mask_prefab").SetActive(false);
         }
     }
 
