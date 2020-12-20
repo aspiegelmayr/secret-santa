@@ -19,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject grunt3;
     [SerializeField] GameObject footstep;
     [SerializeField] GameObject swoosh1;   
-    [SerializeField] GameObject swoosh2;
+    [SerializeField] GameObject swoosh2;  
+    [SerializeField] float pushForce = 20f;
 
 
     private CharacterController cc;
@@ -50,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        footstep.GetComponent<AudioSource>().Play();
         float MSC = maxSpeedChange * Time.deltaTime;
 
         smoothWalkInputVec.x += Mathf.Clamp(walkInputVec.x - smoothWalkInputVec.x, -MSC, MSC);
@@ -86,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue input)
     {
+        footstep.GetComponent<AudioSource>().Play();
         walkInputVec = input.Get<Vector2>();
     }
 
@@ -195,15 +196,32 @@ public class PlayerMovement : MonoBehaviour
                 UIManager.Instance.KizuneTalk(1);
             }
 
-            if (other.name == "Helmet" && !GameManager.Instance.hasHelmet)
+            if (other.name == "pot_prefab" && !GameManager.Instance.hasHelmet)
             {
                 GameManager.Instance.hasHelmet = true;
                 UIManager.Instance.KizuneTalk(2);
             }
+
+            if (other.name == "Sweets_prefab")
+            {
+                UIManager.Instance.SetWon(true);
+            }
         }
+
         if (other.tag == "light" && !GameManager.Instance.hasHelmet)
         {
             UIManager.Instance.StartDeath();
+        }
+
+        if (other.tag == "maskBar")
+        {
+            Debug.Log("mask turn");
+            MaskMonster.Instance.TurnAround();
+        }
+
+        if(other.tag == "pusha"){
+            CancelInvoke("Deactivate");
+            externalForce += other.transform.forward * pushForce;
         }
     }
 

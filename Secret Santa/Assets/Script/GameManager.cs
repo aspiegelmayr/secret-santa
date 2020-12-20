@@ -74,9 +74,10 @@ public class GameManager : Singleton<GameManager>
         {
             GameObject.Find("mask_moster_prefab").SetActive(false);
         }
-        else
+        else if (GameObject.Find("mask_moster_prefab") != null)
         {
             GameObject.Find("mask_prefab").SetActive(false);
+            GameObject.Find("Spot Light").SetActive(false);
         }
     }
 
@@ -197,12 +198,13 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void RestartGame()
-    {
-        UpdateState(GameState.PREGAME);        
+    {      
         hasKizune = false;
         hasHelmet = false;
         enteredLR = false;
         enteredK = false;
+        UpdateState(GameState.PREGAME);
+        UnloadLevel(_currentLevelName);
     }
 
     public void QuitGame()
