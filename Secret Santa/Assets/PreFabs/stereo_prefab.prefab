@@ -250,7 +250,8 @@ MonoBehaviour:
   target: {fileID: 0}
   projectile: {fileID: 6029136680806134551, guid: a770ed9df874b6243b4b749f1f89e0d6,
     type: 3}
-  mat: {fileID: 2100000, guid: efe13ba5d17dfc941bbe6d289aac43cb, type: 2}
+  eyes: {fileID: 1512274423295256355}
+  mouth: {fileID: 709420510730319665}
   soundsource: {fileID: 6455744692508947001}
 --- !u!54 &5946777411297890853
 Rigidbody:
@@ -592,6 +593,18 @@ PrefabInstance:
 --- !u!4 &6053489982899119071 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f7b2c9f5cb466f6438b6e0ecd5d2b3de,
+    type: 3}
+  m_PrefabInstance: {fileID: 6019316454357926964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1512274423295256355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5148817236446094103, guid: f7b2c9f5cb466f6438b6e0ecd5d2b3de,
+    type: 3}
+  m_PrefabInstance: {fileID: 6019316454357926964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &709420510730319665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6507901977716847365, guid: f7b2c9f5cb466f6438b6e0ecd5d2b3de,
     type: 3}
   m_PrefabInstance: {fileID: 6019316454357926964}
   m_PrefabAsset: {fileID: 0}
